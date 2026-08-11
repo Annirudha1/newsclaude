@@ -1,0 +1,2663 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>NEWS CLAUDE </title>
+    <link rel="icon" type="image/png" href="{% static 'images/new news claude logo.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/new news claude logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3874f7;
+            --primary-dark: #0d236c;
+            --accent: #dc2626;
+            --success: #16a34a;
+            --warning: #ea580c;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .published-scroll-section {
+            scroll-margin-top: 90px;
+        }
+        
+        * {
+            transition: all 0.3s ease;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1a1a1a;
+        }
+        
+        img,
+        iframe,
+        video {
+            max-width: 100%;
+        }
+        
+        .navbar {
+            background:
+                radial-gradient(circle at left top, rgba(255, 255, 255, 0.12), transparent 28%),
+                linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding-top: 0.45rem;
+            padding-bottom: 0.45rem;
+        }
+        .navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #fff !important;
+    text-decoration: none;
+    flex: 0 0 auto;
+    margin-right: auto; /* left side push */
+}
+        .logo-img {
+    width: 180px;
+    height: 50px;
+    object-fit: contain;
+    object-position: center;
+    overflow: hidden;
+    margin: 0 55px;
+    
+        }
+    
+        .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #0d1b5e;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+.social-icon:hover {
+    background: #e30613;
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+}
+
+.social-icon .fa-facebook-f:hover { color: #1877F2; }
+.social-icon .fa-x-twitter:hover { color: #000; }
+.social-icon .fa-instagram:hover { color: #E4405F; }
+.social-icon .fa-youtube:hover { color: #FF0000; }
+.social-icon .fa-linkedin-in:hover { color: #0A66C2; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav-socials {
+        gap: 8px;
+    }
+
+    .social-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
+
+        .site-topbar .container {
+            position: relative;
+           
+        }
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+        .topbar-search {
+            flex: 1 1 280px;
+            min-width: 0;
+        }
+        .topbar-menu-toggle {
+            width: 44px;
+            height: 44px;
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--primary-dark);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+        }
+        .topbar-menu {
+            flex: 0 0 auto;
+        }
+        .topbar-direct-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 0 0 auto;
+        }
+        .topbar-direct-actions .btn {
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+        .topbar-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex: 0 0 auto;
+            min-width: 0;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        .search-wrap {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .search-wrap .form-control {
+            min-height: 42px;
+            border: none;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+        }
+        .topbar-actions .btn {
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        /* .category-nav {
+            background: white;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .category-bar {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+            scrollbar-width: none;
+        }
+        .category-bar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category-link {
+            padding: 0.6rem 0.9rem !important;
+            border-bottom: 3px solid transparent;
+            border-radius: 999px;
+            flex: 0 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .category-link:hover {
+            border-bottom-color: var(--primary) !important;
+            transform: translateY(-2px);
+        }
+        
+        .category-link.active {
+            border-bottom-color: var(--primary) !important;
+            color: var(--primary) !important;
+            font-weight: 700 !important;
+        } */
+
+        .category-nav {
+    background: white;
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.category-bar {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.category-link {
+    padding: 0.6rem 0.9rem !important;
+    border-bottom: 3px solid transparent;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.category-link:hover {
+    border-bottom-color: var(--primary) !important;
+    transform: translateY(-2px);
+}
+
+.category-link.active {
+    border-bottom-color: var(--primary) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+.navbar-brand.category-link.home-link{
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 45px;
+    margin: 0 18px !important;
+    padding: 0 !important;
+    flex: 0 0 30px !important;
+}
+
+.navbar-brand.category-link.home-link i{
+    font-size: 22px;
+}
+
+/* Hamburger */
+.navbar-toggler {
+    border: none;
+    box-shadow: none !important;
+}
+
+/* =======================
+   Mobile Responsive
+======================= */
+@media (max-width: 991px) {
+
+    .site-topbar .navbar-collapse {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        background: #fff;
+        box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
+        border-radius: 16px;
+        z-index: 1001;
+    }
+
+    .site-topbar .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+        padding: 0.75rem;
+    }
+
+    .site-topbar .topbar-actions .btn {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    .site-topbar .topbar-direct-actions {
+        gap: 0.4rem;
+    }
+
+    .category-nav .container {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+    .category-nav {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,.1);
+        border-radius: 0 0 10px 10px;
+        z-index: 999;
+    }
+
+    .category-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 10px;
+    }
+
+    .category-link {
+        width: 100%;
+        border-radius: 8px;
+        padding: 7px 10px !important;
+        border-bottom: none;
+        font-size: 0.88rem;
+    }
+
+    .category-link:hover {
+        background: #f5f5f5;
+        transform: none;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+
+    .category-nav .container {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .navbar-collapse {
+        position: static;
+        width: auto;
+        background: transparent;
+        box-shadow: none;
+        flex: 1;
+    }
+
+    .category-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 0;
+        padding: 0;
+    }
+
+    .category-link {
+        flex: 1;
+        text-align: center;
+        padding: 12px 8px !important;
+        border-radius: 0;
+    }
+}
+        
+        .hero-card {
+            min-height: 420px; 
+            background: transparent;
+            color: rgb(252, 250, 250); 
+            border-radius: 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: none;
+        }
+        .hero-card::before {
+            content: none;
+        }
+        .hero-card .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            height: 100%;
+        }
+        .hero-carousel {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            min-height: 420px;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            opacity: 0;
+            transform: translateX(24px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .hero-slide-media {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+            padding: 0;
+        }
+        .hero-slide-media img {
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .hero-slide::before {
+            content: none;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+        .hero-slide-copy {
+            width: min(620px, calc(100% - 120px));
+            position: absolute;
+            z-index: 1;
+            left: 60px;
+            top: 40px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .hero-slide-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .hero-slide-title,
+        .hero-slide-description {
+            text-align: left;
+        }
+        .hero-slide-description {
+            max-width: 52ch;
+            margin-bottom: 0;
+        }
+        .hero-slide-cta {
+            margin-top: auto;
+            margin-left: 40px;
+            margin-bottom: 40px;
+            align-self: flex-start;
+        }
+        .hero-carousel-controls {
+            position: absolute;
+            inset: auto 1.5rem 1.5rem auto;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 3;
+        }
+        .hero-nav-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.35);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .hero-nav-btn:hover {
+            background: rgba(255,255,255,0.16);
+        }
+        .hero-indicators {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+        .hero-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            border: none;
+            padding: 0;
+            background: rgba(255,255,255,0.35);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .hero-indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        .hero-live-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(239, 68, 68, 0.18);
+            color: #fecaca;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .news-card {
+            border: none; 
+            border-radius: 1.2rem; 
+            overflow: hidden; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            cursor: pointer;
+            position: relative;
+            background: white;
+        }
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+        .news-card img {height: 200px; object-fit: cover;}
+        .news-card .card-body {
+            min-width: 0;
+        }
+        .card-title,
+        .card-text,
+        .short-card-title,
+        .scroll-article-card-title,
+        .insight-meta,
+        .section-title,
+        .navbar-brand,
+        .category-link,
+        .scroll-article-card-badge,
+        .category-badge {
+            overflow-wrap: anywhere;
+        }
+        
+        .section-title {
+            font-size: 1.4rem; 
+            font-weight: 800; 
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .trending-badge {
+            background: linear-gradient(135deg, var(--warning), var(--accent));
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+        
+        .admin-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+            opacity: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 5px;
+            border-radius: 8px;
+        }
+        
+        .news-card:hover .admin-controls {
+            opacity: 1;
+        }
+        
+        .admin-btn {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            background: var(--primary);
+        }
+        
+        .admin-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .admin-btn.danger {
+            background: var(--accent);
+        }
+        
+        .admin-btn.success {
+            background: var(--success);
+        }
+        
+        .trending-section {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+            border-radius: 1.2rem;
+            border-left: 4px solid var(--warning);
+        }
+
+        .live-insights-section {
+            background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
+            border-radius: 1.2rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .trending-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .trending-item:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        
+        .trending-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .trend-insights {
+            display: grid;
+            gap: 8px;
+        }
+
+        .insight-top-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .insight-card {
+            min-height: 94px;
+            padding: 9px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .72);
+            border: 1px solid rgba(0, 0, 0, .08);
+            font-size: .78rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .insight-card > * {
+            position: relative;
+            z-index: 1;
+        }
+        .weather-insight-card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .weather-insight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.58) 100%);
+            z-index: 0;
+        }
+        .weather-insight-card h4,
+        .weather-insight-card .insight-value,
+        .weather-insight-card .insight-meta {
+            color: #fff;
+        }
+        .weather-insight-card .insight-meta {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+        .market-insight-card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .market-insight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.14) 0%, rgba(15, 23, 42, 0.66) 100%);
+            z-index: 0;
+        }
+        .market-insight-card h4,
+        .market-insight-card .insight-value,
+        .market-insight-card .insight-meta,
+        .market-insight-card .market-positive,
+        .market-insight-card .market-negative {
+            color: #fff;
+        }
+        .market-insight-card .insight-meta,
+        .market-insight-card .market-positive,
+        .market-insight-card .market-negative {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+        .sports-insight-card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .sports-insight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.10) 0%, rgba(15, 23, 42, 0.60) 100%);
+            z-index: 0;
+        }
+        .sports-insight-card h4,
+        .sports-insight-card .insight-value,
+        .sports-insight-card .insight-meta {
+            color: #fff;
+        }
+        .sports-insight-card .insight-meta {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+        .insight-card h4 { margin: 0 0 6px; font-size: .8rem; font-weight: 700; }
+        .insight-value { font-size: 1rem; font-weight: 800; }
+        .insight-meta { color: #6b7280; font-size: .72rem; }
+        .market-positive { color: #15803d; }
+        .market-negative { color: #b91c1c; }
+
+        @media (max-width: 576px) {
+            .insight-top-row { grid-template-columns: 1fr; }
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .admin-panel {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .admin-panel-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .admin-panel .form-select {
+            border: 1px solid var(--primary);
+        }
+        
+        .admin-panel .btn {
+            font-weight: 600;
+        }
+        
+        /* Scrollable Articles Styles */
+        .published-scroll-section {
+            margin: 2rem 0;
+        }
+        
+        .scrollable-articles {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 1rem 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .scrollable-articles::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .scrollable-articles::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .scrollable-articles::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .scrollable-articles::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        .scroll-article-card {
+            flex: 0 0 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .scroll-article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        
+        .scroll-article-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .scroll-article-card-body {
+            padding: 1rem;
+        }
+        
+        .scroll-article-card-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .scroll-article-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .scroll-article-card-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scroll-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .scroll-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .scroll-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        .scroll-btn:active {
+            transform: scale(0.95);
+        }
+        .shorts-row { display: flex; gap: 14px; overflow-x: auto; padding: 4px 2px 12px; scrollbar-width: thin; }
+        .short-card { flex: 0 0 155px; color: #222; text-decoration: none; min-width: 0; }
+        .short-card img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; background: #ddd; }
+        .short-card-title { font-size: .85rem; font-weight: 700; margin-top: 7px; line-height: 1.25; }
+        .short-card-channel { color: #777; font-size: .72rem; }
+        .site-footer {
+            margin-top: 4rem;
+            padding: 0;
+            background:
+                radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 28%),
+                linear-gradient(180deg, #0f172a 0%, #020617 100%);
+            color: #dbe4f0;
+            border-top: 1px solid rgba(148, 163, 184, 0.18);
+        }
+        .footer-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr));
+            gap: 2rem;
+            padding: 3rem 0 2rem;
+        }
+        .footer-brand {
+            display: grid;
+            gap: 1rem;
+        }
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+        .footer-logo img {
+            width: 140px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 14px;
+            border: 1px solid #fff;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.22);
+        }
+        .footer-description,
+        .footer-copy,
+        .footer-meta,
+        .footer-contact-item,
+        .footer-about-copy {
+            color: #94a3b8;
+        }
+        .footer-description,
+        .footer-about-copy {
+            margin: 0;
+            line-height: 1.7;
+        }
+        .footer-heading {
+            margin: 0 0 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .footer-link-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0.8rem;
+        }
+        .footer-link-list a,
+        .footer-contact-item a,
+        .footer-social-link {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        .footer-link-list a:hover,
+        .footer-contact-item a:hover,
+        .footer-social-link:hover,
+        .footer-logo:hover {
+            color: #fff;
+        }
+        .footer-link-list a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .footer-social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+        }
+        .footer-social-link:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .footer-newsletter {
+            display: grid;
+            gap: 0.9rem;
+        }
+        .footer-newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .footer-newsletter-input {
+            flex: 1 1 220px;
+            min-height: 48px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: rgba(15, 23, 42, 0.78);
+            color: #fff;
+            padding: 0.85rem 1rem;
+        }
+        .footer-newsletter-input::placeholder {
+            color: #94a3b8;
+        }
+        .footer-newsletter-button {
+            min-height: 48px;
+            border: none;
+            border-radius: 999px;
+            padding: 0.85rem 1.25rem;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .footer-newsletter-button:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        .footer-newsletter-note {
+            min-height: 1.2rem;
+            font-size: 0.88rem;
+            color: #60a5fa;
+        }
+        .footer-contact-list {
+            display: grid;
+            gap: 0.8rem;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            line-height: 1.6;
+        }
+        .footer-meta {
+            border-top: 1px solid rgba(148, 163, 184, 0.14);
+            padding: 1.15rem 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.92rem;
+        }
+        .footer-meta-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-meta-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        .footer-meta-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 991.98px) {
+            .container.py-5 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            .hero-card {
+                min-height: 360px;
+            }
+            .hero-carousel {
+                min-height: 360px;
+            }
+            .hero-slide-copy {
+                max-width: 100%;
+            }
+            .scroll-article-card {
+                flex-basis: 280px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .topbar-inner {
+                gap: 0.45rem;
+            }
+            .navbar-brand {
+                font-size: 1.25rem;
+                flex: 0 0 auto;
+            }
+            .brand-lockup {
+                max-width: 100%;
+            }
+            .topbar-search {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+            .topbar-direct-actions .btn,
+            .topbar-menu-toggle {
+                width: 40px;
+                height: 40px;
+                min-height: 40px;
+                padding: 0;
+            }
+            .topbar-direct-actions .btn-label {
+                display: none;
+            }
+            .admin-panel-controls {
+                align-items: stretch;
+            }
+            .footer-inner {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .admin-panel-controls,
+            .admin-panel-controls .btn,
+            .admin-panel-controls .form-select {
+                width: 100%;
+            }
+            .category-bar {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                padding-right: 0.5rem;
+            }
+            .category-link {
+                font-size: 0.92rem;
+            }
+            .hero-card {
+                min-height: 300px;
+                border-radius: 1.1rem;
+                padding: 1.25rem !important;
+            }
+            .hero-card::before {
+                width: 180px;
+                height: 180px;
+                transform: translate(60px, -60px);
+            }
+            .section-title {
+                font-size: 1.15rem;
+                gap: 0.5rem;
+            }
+            .news-card img {
+                height: 190px;
+            }
+            .scroll-buttons {
+                display: none;
+            }
+            .scrollable-articles {
+                gap: 1rem;
+                padding: 0.75rem 0 0.25rem;
+                scroll-snap-type: x proximity;
+            }
+            .scroll-article-card {
+                flex-basis: min(82vw, 280px);
+                scroll-snap-align: start;
+            }
+            .short-card {
+                flex-basis: 132px;
+            }
+            .insight-card {
+                min-height: auto;
+            }
+            .footer-newsletter-form,
+            .footer-meta {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .navbar {
+                padding-top: 0.4rem;
+                padding-bottom: 0.4rem;
+            }
+            .logo-img {
+                width: clamp(140px, 42vw, 180px);
+                height: 46px;
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .hero-card h2 {
+                font-size: 1.55rem;
+            }
+            .hero-card p {
+                font-size: 0.95rem !important;
+            }
+            .hero-slide {
+                padding: 0;
+            }
+            .hero-slide-media {
+                padding: 0;
+            }
+            .hero-slide-copy {
+                width: min(100%, calc(100% - 48px));
+                left: 24px;
+                top: 24px;
+                bottom: 24px;
+            }
+            .hero-slide-cta {
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .hero-carousel-controls {
+                left: 1.25rem;
+                right: 1.25rem;
+                justify-content: space-between;
+            }
+            .news-card .card-body,
+            .scroll-article-card-body,
+            .live-insights-section,
+            .admin-panel {
+                padding: 1rem;
+            }
+            .short-card {
+                flex-basis: 118px;
+            }
+            .short-card-title {
+                font-size: 0.8rem;
+            }
+            .scroll-article-card {
+                flex-basis: 84vw;
+            }
+            .scroll-article-card img,
+            .news-card img {
+                height: 170px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 2.25rem 0 1.5rem;
+            }
+            .footer-newsletter-input,
+            .footer-newsletter-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg site-topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <!-- <a class="navbar-brand" href="/" aria-label="NEWS CLAUDE Home">
+        <img src="{% static 'images/main newsclaude logo.png' %}" alt="NEWS CLAUDE " class="logo-img">
+        
+      </a> -->
+       <div class="nav-socials">
+    <a href="#" class="social-icon" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" class="social-icon" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="#" class="social-icon" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="#" class="social-icon" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+</div>
+
+      <div class="search-wrap topbar-search">
+      <input id="searchBox" class="form-control form-control-sm" placeholder="Search news...">
+        </div>
+      <div class="topbar-direct-actions">
+        <button id="searchButton" class="btn btn-light btn-sm" aria-label="Search"><i class="fas fa-search"></i><span class="btn-label">Search</span></button>
+        <a href="/shorts/" class="btn btn-danger btn-sm" aria-label="Shorts"><i class="fas fa-play"></i><span class="btn-label">Shorts</span></a>
+      </div>
+      <!-- <button class="navbar-toggler topbar-menu-toggle"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#topbarMenu"
+              aria-controls="topbarMenu"
+              aria-expanded="false"
+              aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="collapse navbar-collapse topbar-menu" id="topbarMenu">
+        <div class="topbar-actions ms-lg-auto">
+          <a href="/admin/" class="btn btn-light btn-sm" target="_blank" rel="noopener noreferrer"><i class="fas fa-cog"></i> Admin</a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</nav>
+
+<!-- Category Navigation Bar -->
+ <!--
+<nav class="navbar navbar-expand-lg category-nav">
+  <div class="container">
+    <div class="navbar-nav category-bar">
+      <a class="nav-link category-link active" href="#" data-category="home" style="color: var(--primary); font-weight: 600;">
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a class="nav-link category-link" href="#" data-category="technology" style="color: #666; font-weight: 600;">
+        <i class="fas fa-laptop-code"></i> Technology
+      </a>
+      <a class="nav-link category-link" href="#" data-category="business" style="color: #666; font-weight: 600;">
+        <i class="fas fa-briefcase"></i> Business
+      </a>
+      <a class="nav-link category-link" href="#" data-category="sports" style="color: #666; font-weight: 600;">
+        <i class="fas fa-football"></i> Sports
+      </a>
+      <a class="nav-link category-link" href="#" data-category="health" style="color: #666; font-weight: 600;">
+        <i class="fas fa-heart"></i> Health
+      </a>
+      <a class="nav-link category-link" href="#" data-category="science" style="color: #666; font-weight: 600;">
+        <i class="fas fa-flask"></i> Science
+      </a>
+      <a class="nav-link category-link" href="#" data-category="education" style="color: #666; font-weight: 600;">
+        <i class="fas fa-graduation-cap"></i> Education
+      </a>
+    </div>
+  </div>
+</nav>
+-->
+
+<!-- Category Navigation Bar -->
+<nav class="navbar navbar-expand-lg category-nav">
+    <div class="container">
+
+      <a class="navbar-brand" href="/" aria-label="NEWS CLAUDE Home">
+        <img src="{% static 'images/main newsclaude logo.png' %}" alt="NEWS CLAUDE " class="logo-img">
+        
+      </a>
+
+        <!-- Home (Always Visible) -->
+        <a class="navbar-brand category-link home-link active" href="#" data-category="home">
+            <i class="fas fa-home"></i> 
+
+            <!-- Hamburger -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#categoryMenu">
+            <i class="fas fa-bars fs-4"></i>
+        </button>
+        </a>
+
+        
+        <!-- <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#categoryMenu">
+            <i class="fas fa-bars fs-4"></i>
+        </button> -->
+
+        <!-- Categories -->
+        <div class="collapse navbar-collapse" id="categoryMenu">
+            <div class="navbar-nav ms-auto category-bar">
+
+                <a class="nav-link category-link" href="#" data-category="technology">
+                    <i class="fas fa-laptop-code"></i> Technology
+                </a>
+
+                <a class="nav-link category-link" href="#" data-category="business">
+                    <i class="fas fa-briefcase"></i> Business
+                </a>
+
+                <a class="nav-link category-link" href="#" data-category="sports">
+                    <i class="fas fa-football"></i> Sports
+                </a>
+
+                <a class="nav-link category-link" href="#" data-category="health">
+                    <i class="fas fa-heart"></i> Health
+                </a>
+
+                <a class="nav-link category-link" href="#" data-category="science">
+                    <i class="fas fa-flask"></i> Science
+                </a>
+
+                <a class="nav-link category-link" href="#" data-category="education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div id="heroSection" class="hero-card"></div>
+    </div>
+    <div class="col-lg-4">
+      <div class="p-4 live-insights-section">
+        <div class="section-title">
+          <i class="fas fa-satellite-dish"></i> Live Updates
+        </div>
+        <div class="trend-insights">
+          <div class="insight-top-row">
+            <div id="weatherInsight" class="insight-card"><h4><i class="fas fa-cloud-sun"></i> Weather</h4><span class="insight-meta">Loading Delhi weatherâ€¦</span></div>
+            <div id="sportsInsight" class="insight-card"><h4><i class="fas fa-trophy"></i> Sports</h4><span class="insight-meta">Loading sportsâ€¦</span></div>
+          </div>
+          <div id="marketInsight" class="insight-card"><h4><i class="fas fa-chart-line"></i> Markets</h4><span class="insight-meta">Loading marketsâ€¦</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="mt-5">
+    <div class="section-title"><i class="fas fa-play-circle"></i> Shorts</div>
+    <div id="shortsSection" class="shorts-row"></div>
+  </section>
+  
+  <!-- News Grid Container with Admin Panel -->
+  <div id="newsContainer" class="mt-6">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="section-title" id="sectionTitle">
+        <i class="fas fa-star"></i> Latest News
+      </div>
+      <div class="admin-panel-controls">
+        <button class="btn btn-sm btn-outline-info" id="toggleAdminMode" title="Toggle Admin Mode">
+          <i class="fas fa-lock-open"></i> Admin Mode
+        </button>
+      </div>
+    </div>
+    
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="adminPanel" class="admin-panel mb-4" style="display: none; background: #f0f7ff; border: 2px solid var(--primary); padding: 15px; border-radius: 10px;">
+      <div class="row g-2">
+        <div class="col-md-3">
+          <select id="adminFilterCategory" class="form-select form-select-sm">
+            <option value="">All Categories</option>
+            <option value="technology">Technology</option>
+            <option value="business">Business</option>
+            <option value="sports">Sports</option>
+            <option value="health">Health</option>
+            <option value="science">Science</option>
+            <option value="education">Education</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select id="adminFilterStatus" class="form-select form-select-sm">
+            <option value="">All Status</option>
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-sm btn-primary w-100" id="applyAdminFilter">
+            <i class="fas fa-filter"></i> Apply Filter
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-sm btn-warning w-100" id="publishAllFiltered">
+            <i class="fas fa-check"></i> Publish All
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="latestSection" class="row g-4"></div>
+  </div>
+  
+  <!-- Scrollable Published Articles Sections -->
+  <div class="mt-8">
+    <!-- Technology Scrollable -->
+    <div id="technologyScrollContainer" class="published-scroll-section" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-laptop-code"></i> Technology News
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('technology-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('technology-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div id="technology-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+         <!-- Technology Section -->
+  <div id="technologyContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-laptop-code"></i> Technology
+    </div>
+    <div id="technologySection" class="row g-4"></div>
+  </div>
+      </div>
+    </div>
+    
+    <!-- Business Scrollable -->
+    <div id="businessScrollContainer" class="published-scroll-section" style="display: none; margin-top: 3rem;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-briefcase"></i> Business News
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('business-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('business-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div id="business-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+          <!-- Business Section -->
+  <div id="businessContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-briefcase"></i> Business
+    </div>
+    <div id="businessSection" class="row g-4"></div>
+  </div>
+      </div>
+    </div>
+    
+    <!-- Sports Scrollable -->
+    <div id="sportsScrollContainer" class="published-scroll-section" style="display: none; margin-top: 3rem;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-football"></i> Sports News
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('sports-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('sports-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div id="sports-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+         <!-- Sports Section -->
+  <div id="sportsContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-football"></i> Sports
+    </div>
+    <div id="sportsSection" class="row g-4"></div>
+  </div>
+      </div>
+    </div>
+    
+    <!-- Health Scrollable -->
+    <div id="healthScrollContainer" class="published-scroll-section" style="display: none; margin-top: 3rem;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-heart"></i> Health & Wellness
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('health-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('health-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div id="health-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+         <!-- Health Section -->
+  <div id="healthContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-heart"></i> Health
+    </div>
+    <div id="healthSection" class="row g-4"></div>
+  </div>
+      </div>
+    </div>
+    
+    <!-- Science Scrollable -->
+    <div id="scienceScrollContainer" class="published-scroll-section" style="display: none; margin-top: 3rem;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-flask"></i> Science & Technology
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('science-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('science-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    <div id="science-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+         <!-- Science Section -->
+<div id="scienceContainer" class="mt-6" style="display: none;">
+  <div class="section-title">
+    <i class="fas fa-flask"></i> Science
+  </div>
+  <div id="scienceSection" class="row g-4"></div>
+</div>
+      </div>
+    </div>
+
+    <!-- Education Scrollable -->
+    <div id="educationScrollContainer" class="published-scroll-section" style="display: none; margin-top: 3rem;">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">
+          <i class="fas fa-graduation-cap"></i> Education News
+        </h4>
+        <div class="scroll-buttons gap-2">
+          <button class="scroll-btn scroll-left" onclick="scrollSection('education-scroll')" title="Scroll Left">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="scroll-btn scroll-right" onclick="scrollSection('education-scroll', 'right')" title="Scroll Right">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div id="education-scroll" class="scrollable-articles">
+        <!-- Articles will be loaded here -->
+         <!-- Education Section -->
+<div id="educationContainer" class="mt-6" style="display: none;">
+  <div class="section-title">
+    <i class="fas fa-graduation-cap"></i> Education
+  </div>
+  <div id="educationSection" class="row g-4"></div>
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Technology Section -->
+  <div id="technologyContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-laptop-code"></i> Technology
+    </div>
+    <div id="technologySection" class="row g-4"></div>
+  </div>
+  
+  <!-- Business Section -->
+  <div id="businessContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-briefcase"></i> Business
+    </div>
+    <div id="businessSection" class="row g-4"></div>
+  </div>
+  
+  <!-- Sports Section -->
+  <div id="sportsContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-football"></i> Sports
+    </div>
+    <div id="sportsSection" class="row g-4"></div>
+  </div>
+  
+  <!-- Health Section -->
+  <div id="healthContainer" class="mt-6" style="display: none;">
+    <div class="section-title">
+      <i class="fas fa-heart"></i> Health
+    </div>
+    <div id="healthSection" class="row g-4"></div>
+  </div>
+
+  <!-- Science Section -->
+<div id="scienceContainer" class="mt-6" style="display: none;">
+  <div class="section-title">
+    <i class="fas fa-flask"></i> Science
+  </div>
+  <div id="scienceSection" class="row g-4"></div>
+</div>
+
+   <!-- Education Section -->
+<div id="educationContainer" class="mt-6" style="display: none;">
+  <div class="section-title">
+    <i class="fas fa-graduation-cap"></i> Education
+  </div>
+  <div id="educationSection" class="row g-4"></div>
+</div>
+  
+  <div class="mt-5">
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+      <button id="previousPageButton" class="btn btn-outline-primary px-4 py-2">
+        <i class="fas fa-arrow-left"></i> Previous
+      </button>
+      <span id="paginationStatus" class="text-muted fw-semibold">Page 1</span>
+      <button id="nextPageButton" class="btn btn-primary px-4 py-2">
+        Next <i class="fas fa-arrow-right"></i>
+      </button>
+      <button id="lastPageButton" class="btn btn-outline-secondary px-4 py-2">
+        Last Page
+      </button>
+    </div>
+    <div id="paginationNotice" class="text-center text-muted small mt-3"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="{% static 'images/main newsclaude logo.png' %}" alt="NEWS CLAUDE Logo">
+        </a>
+        <p class="footer-description">A fast, modern news portal covering the stories shaping technology, business, sports, health, science, and education in one clean destination.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social-link" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-link-list">
+          <li><a href="/"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="#newsContainer"><i class="fas fa-layer-group"></i> Categories</a></li>
+          <li><a href="/shorts/"><i class="fas fa-circle-play"></i> Shorts</a></li>
+          <li><a href="#footer-contact"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li><a href="#privacy-policy"><i class="fas fa-shield-halved"></i> Privacy Policy</a></li>
+          <li><a href="#terms-of-use"><i class="fas fa-file-contract"></i> Terms</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">About Us</h4>
+        <p class="footer-about-copy">MultiNews brings together live headlines, editorial categories, and short-form video updates to help readers stay informed on every screen.</p>
+        <div id="footer-contact" class="footer-contact-list mt-4">
+          
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope-open-text"></i>
+            <a href="mailto:hello@multinews.example">email@.com</a>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="footer-newsletter">
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p class="footer-description">Get the top stories, trending updates, and fresh shorts delivered straight to your inbox.</p>
+        </div>
+        <form id="newsletterForm" class="footer-newsletter-form">
+          <input id="newsletterEmail" class="footer-newsletter-input" type="email" placeholder="Enter your email address" aria-label="Email address for newsletter">
+          <button type="submit" class="footer-newsletter-button">Subscribe</button>
+        </form>
+        <div id="newsletterMessage" class="footer-newsletter-note"></div>
+      </div>
+    </div>
+
+    <div class="footer-meta">
+      <p class="footer-copy">Â© 2026 NEWS CLAUDE. All rights reserved.</p>
+      <div class="footer-meta-links">
+        <a id="privacy-policy" href="#">Privacy Policy</a>
+        <a id="terms-of-use" href="#">Terms of Service</a>
+        <a href="#footer-contact">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const state = {
+  page: 1,
+  query: '',
+  category: 'home',
+  adminMode: false,
+  filteredArticles: [],
+  searchTimer: null,
+  totalPages: 1,
+  nextPageUrl: null,
+  previousPageUrl: null,
+  pageSize: 12,
+  heroArticles: [],
+  heroIndex: 0,
+  heroTimer: null,
+};
+
+async function loadJson(url) {
+  const response = await fetch(url);
+  return response.json();
+}
+
+function getCategoryColor(category) {
+  const colors = {
+    'technology': '#3b82f6',
+    'business': '#f97316',
+    'sports': '#22c55e',
+    'health': '#ef4444',
+    'science': '#8b5cf6',
+    'education': '#06b6d4',
+    'trending': '#ea580c',
+    'home': '#6366f1'
+  };
+  return colors[category] || '#6366f1';
+}
+
+function formatHeroDate(value) {
+  if (!value) {
+    return 'Latest update';
+  }
+  return new Date(value).toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
+}
+
+function getLocalWeatherBackgroundGif(condition) {
+  const normalized = (condition || '').toLowerCase();
+
+  if (normalized.includes('rain') || normalized.includes('drizzle') || normalized.includes('thunder')) {
+    return "{% static 'images/rainy.gif' %}";
+  }
+  if (normalized.includes('clear') || normalized.includes('sun')) {
+    return "{% static 'images/sunny.gif' %}";
+  }
+  if (
+    normalized.includes('cloud') ||
+    normalized.includes('mist') ||
+    normalized.includes('fog') ||
+    normalized.includes('haze') ||
+    normalized.includes('smoke')
+  ) {
+    return "{% static 'images/cloudey.gif' %}";
+  }
+
+  return "{% static 'images/cloudey.gif' %}";
+}
+
+function getLocalMarketBackground(indices) {
+  const totalChange = (indices || []).reduce((sum, index) => {
+    const numericChange = Number.parseFloat(String(index.change || '0').replace('%', ''));
+    return sum + (Number.isFinite(numericChange) ? numericChange : 0);
+  }, 0);
+
+  return totalChange >= 0
+    ? "{% static 'images/trading.gif' %}"
+    : "{% static 'images/trading.gif' %}";
+}
+
+function getLocalSportsBackgroundGif() {
+  return "{% static 'images/mysports.gif' %}";
+}
+
+function stopHeroAutoplay() {
+  if (state.heroTimer) {
+    window.clearInterval(state.heroTimer);
+    state.heroTimer = null;
+  }
+}
+
+function setHeroSlide(index) {
+  const slides = document.querySelectorAll('.hero-slide');
+  const indicators = document.querySelectorAll('.hero-indicator');
+
+  if (!slides.length) {
+    return;
+  }
+
+  const nextIndex = (index + slides.length) % slides.length;
+  state.heroIndex = nextIndex;
+
+  slides.forEach((slide, slideIndex) => {
+    slide.classList.toggle('active', slideIndex === nextIndex);
+  });
+  indicators.forEach((indicator, indicatorIndex) => {
+    indicator.classList.toggle('active', indicatorIndex === nextIndex);
+  });
+}
+
+function startHeroAutoplay() {
+  stopHeroAutoplay();
+
+  if (state.heroArticles.length <= 1) {
+    return;
+  }
+
+  state.heroTimer = window.setInterval(() => {
+    setHeroSlide(state.heroIndex + 1);
+  }, 5000);
+}
+
+function bindHeroCarousel() {
+  const heroSection = document.getElementById('heroSection');
+  if (!heroSection) {
+    return;
+  }
+
+  const previousButton = heroSection.querySelector('[data-hero-nav="prev"]');
+  const nextButton = heroSection.querySelector('[data-hero-nav="next"]');
+  const indicators = heroSection.querySelectorAll('.hero-indicator');
+
+  if (previousButton) {
+    previousButton.onclick = () => {
+      setHeroSlide(state.heroIndex - 1);
+      startHeroAutoplay();
+    };
+  }
+
+  if (nextButton) {
+    nextButton.onclick = () => {
+      setHeroSlide(state.heroIndex + 1);
+      startHeroAutoplay();
+    };
+  }
+
+  indicators.forEach(indicator => {
+    indicator.onclick = () => {
+      setHeroSlide(Number(indicator.dataset.heroIndex || 0));
+      startHeroAutoplay();
+    };
+  });
+
+  heroSection.onmouseenter = stopHeroAutoplay;
+  heroSection.onmouseleave = startHeroAutoplay;
+}
+
+function renderHeroCarousel(articles) {
+  if (!articles.length) {
+    stopHeroAutoplay();
+    return '<p class="text-white p-4 mb-0">No articles published yet.</p>';
+  }
+
+  state.heroArticles = articles;
+  state.heroIndex = Math.min(state.heroIndex, articles.length - 1);
+
+  const slides = articles.map((article, index) => {
+    const categoryColor = getCategoryColor(article.category);
+    const summary = article.description ? article.description.substring(0, 180) : 'Read the full story from the source.';
+    const isActive = index === state.heroIndex ? 'active' : '';
+    const heroImage = article.image_url
+      ? `<div class="hero-slide-media"><img src="${article.image_url}" alt="${article.title}" onerror="this.parentElement.style.display='none'"></div>`
+      : '';
+
+    return `
+      <article class="hero-slide ${isActive}" data-hero-slide="${index}">
+        ${heroImage}
+        <div class="hero-slide-copy">
+          <div class="hero-live-tag"><i class="fas fa-circle"></i> Live Update</div>
+          <div class="hero-slide-meta">
+            <span class="trending-badge mb-0"><i class="fas fa-fire"></i> Top ${index + 1}</span>
+            <span class="category-badge" style="background-color: ${categoryColor}20; color: ${categoryColor}; font-weight: 700;">${article.category.toUpperCase()}</span>
+            <span><i class="far fa-clock"></i> ${formatHeroDate(article.published_at)}</span>
+          </div>
+          <h2 class="hero-slide-title fw-bold mb-3">${article.title}</h2>
+          <p class="hero-slide-description" style="font-size: 1.05rem; opacity: 0.95;">${summary}</p>
+          <a class="hero-slide-cta btn btn-light btn-lg" href="${article.source_url}" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-arrow-right"></i> Read Full Story
+          </a>
+        </div>
+      </article>`;
+  }).join('');
+
+  const controls = articles.length > 1 ? `
+    <div class="hero-carousel-controls">
+      <button class="hero-nav-btn" type="button" data-hero-nav="prev" aria-label="Previous headline">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="hero-indicators" aria-label="Hero headline navigation">
+        ${articles.map((article, index) => `
+          <button class="hero-indicator ${index === state.heroIndex ? 'active' : ''}" type="button" data-hero-index="${index}" aria-label="Show headline ${index + 1}: ${article.title}"></button>
+        `).join('')}
+      </div>
+      <button class="hero-nav-btn" type="button" data-hero-nav="next" aria-label="Next headline">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>` : '';
+
+  return `<div class="hero-carousel">${slides}${controls}</div>`;
+}
+
+function renderCard(article) {
+  const categoryColor = getCategoryColor(article.category);
+  const trendingBadge = article.is_trending ? '<span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>' : '';
+  
+  return `
+    <div class="col-md-6 col-xl-4">
+      <div class="card news-card h-100 position-relative" data-article-id="${article.id}">
+        <div class="admin-controls" data-article-id="${article.id}">
+          <button class="admin-btn success" onclick="publishArticle(${article.id}, this)" title="Publish">
+            <i class="fas fa-check"></i>
+          </button>
+          <button class="admin-btn" onclick="markTrending(${article.id}, this)" title="Trending">
+            <i class="fas fa-fire"></i>
+          </button>
+          <button class="admin-btn danger" onclick="deleteArticle(${article.id}, this)" title="Delete">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+        ${article.image_url ? `<img src="${article.image_url}" class="card-img-top" alt="${article.title}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">` : '<div style="height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center;"><span class="text-muted">No Image</span></div>'}
+        <div class="card-body">
+          <span class="category-badge" style="background-color: ${categoryColor}20; color: ${categoryColor}; font-weight: 600;">${article.category.toUpperCase()}</span>
+          ${trendingBadge}
+          <h6 class="card-title fw-bold mt-2">${article.title}</h6>
+          <p class="card-text small text-muted">${article.description ? article.description.substring(0, 100) : 'Read full article on source'}...</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">${new Date(article.published_at).toLocaleDateString()}</small>
+            <a href="${article.source_url}" target="_blank" class="btn btn-sm btn-primary text-white">
+              <i class="fas fa-external-link-alt"></i> Read
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function setCategorySectionsVisibility(visible) {
+  const displayValue = visible ? 'block' : 'none';
+  ['technology', 'business', 'sports', 'health'].forEach(category => {
+    const gridContainer = document.getElementById(`${category}Container`);
+    if (gridContainer) {
+      gridContainer.style.display = displayValue;
+    }
+  });
+
+  ['technology', 'business', 'sports', 'health', 'science', 'education'].forEach(category => {
+    const scrollContainer = document.getElementById(`${category}ScrollContainer`);
+    if (scrollContainer) {
+      scrollContainer.style.display = displayValue;
+    }
+  });
+}
+
+function showSearchResults(articles) {
+  document.getElementById('sectionTitle').innerHTML = `<i class="fas fa-search"></i> Search: "${state.query}"`;
+  document.getElementById('latestSection').innerHTML = articles.length
+    ? articles.map(renderCard).join('')
+    : '<div class="alert alert-info">No matching articles found.</div>';
+  setCategorySectionsVisibility(false);
+  togglePagination(false);
+}
+
+function restoreHomeLayout() {
+  document.getElementById('sectionTitle').innerHTML = '<i class="fas fa-star"></i> Latest News';
+  togglePagination(true);
+  setCategorySectionsVisibility(true);
+}
+
+function togglePagination(visible) {
+  const displayValue = visible ? 'inline-flex' : 'none';
+  document.getElementById('previousPageButton').style.display = displayValue;
+  document.getElementById('nextPageButton').style.display = displayValue;
+  document.getElementById('lastPageButton').style.display = displayValue;
+  document.getElementById('paginationStatus').style.display = visible ? 'inline' : 'none';
+  document.getElementById('paginationNotice').style.display = visible ? 'block' : 'none';
+}
+
+function updatePagination(articleData) {
+  const results = articleData.results || articleData;
+  const count = articleData.count || results.length || 0;
+
+  if (results.length) {
+    state.pageSize = Math.max(state.pageSize, results.length);
+  }
+
+  state.nextPageUrl = articleData.next || null;
+  state.previousPageUrl = articleData.previous || null;
+  state.totalPages = Math.max(1, Math.ceil(count / state.pageSize));
+
+  document.getElementById('paginationStatus').textContent = `Page ${state.page} of ${state.totalPages}`;
+  document.getElementById('paginationNotice').textContent = state.nextPageUrl
+    ? `${count} articles available`
+    : 'You are on the last page of articles.';
+  document.getElementById('previousPageButton').disabled = state.page <= 1;
+  document.getElementById('nextPageButton').disabled = !state.nextPageUrl;
+  document.getElementById('lastPageButton').disabled = state.page >= state.totalPages;
+}
+
+async function loadShorts() {
+  const container = document.getElementById('shortsSection');
+  if (!container) {
+    return;
+  }
+
+  let status = document.getElementById('shortsStatus');
+  if (!status) {
+    status = document.createElement('div');
+    status.id = 'shortsStatus';
+    status.className = 'text-muted small mt-2';
+    container.parentElement.insertBefore(status, container.nextSibling);
+  }
+  status.textContent = 'Refreshing Shorts from YouTube...';
+  status.style.display = 'block';
+  container.setAttribute('aria-busy', 'true');
+
+  try {
+    const data = await loadJson('/api/shorts/');
+    const shorts = data.results || data;
+    container.innerHTML = shorts.length ? shorts.map(short => `
+      <a class="short-card" href="/shorts/?short=${encodeURIComponent(short.video_id)}">
+        <img src="${short.thumbnail_url || 'https://via.placeholder.com/270x480?text=Short'}" alt="${short.title}" loading="eager" fetchpriority="high">
+        <div class="short-card-title">${short.title || 'Untitled Short'}</div>
+        <div class="short-card-channel">${short.channel_id || ''}</div>
+      </a>`).join('') : '<span class="text-muted">No Shorts yet. Add an active YouTube channel in Admin to start importing videos.</span>';
+  } catch (error) {
+    console.error('Error loading Shorts:', error);
+    if (!container.querySelector('.short-card')) {
+      container.innerHTML = '<span class="text-muted">Could not load Shorts right now. Try again after adding or refreshing a YouTube channel.</span>';
+    }
+  } finally {
+    container.removeAttribute('aria-busy');
+    status.style.display = 'none';
+  }
+}
+
+async function loadOptionalJson(url) {
+  try {
+    return await loadJson(url);
+  } catch (error) {
+    console.warn(`Unable to load ${url}:`, error);
+    return null;
+  }
+}
+
+function renderInsights(weather, markets, sportsArticles) {
+  const weatherInsight = document.getElementById('weatherInsight');
+  if (weather) {
+    weatherInsight.classList.add('weather-insight-card');
+    weatherInsight.style.backgroundImage = `url("${getLocalWeatherBackgroundGif(weather.condition)}")`;
+  } else {
+    weatherInsight.classList.remove('weather-insight-card');
+    weatherInsight.style.backgroundImage = '';
+  }
+
+  weatherInsight.innerHTML = weather ? `
+    <h4><i class="fas fa-cloud-sun"></i> ${weather.city}</h4>
+    <div class="insight-value">${weather.temperature}°C</div>
+    <div class="insight-meta">${weather.condition} · ${weather.humidity}% humidity</div>` :
+    '<h4><i class="fas fa-cloud-sun"></i> Weather</h4><span class="insight-meta">Currently unavailable</span>';
+
+  const indices = markets && markets.indices ? markets.indices : [];
+  const marketInsight = document.getElementById('marketInsight');
+  if (indices.length) {
+    marketInsight.classList.add('market-insight-card');
+    marketInsight.style.backgroundImage = `url("${getLocalMarketBackground(indices)}")`;
+  } else {
+    marketInsight.classList.remove('market-insight-card');
+    marketInsight.style.backgroundImage = '';
+  }
+
+  marketInsight.innerHTML = indices.length ? `
+    <h4><i class="fas fa-chart-line"></i> Markets</h4>
+
+    ${indices.map(index => `
+        <div class="insight-meta">${index.name}</div>
+        <div class="insight-value">${Number(index.price).toLocaleString('en-IN')}</div>
+        <div class="${index.change.startsWith('-') ? 'market-negative' : 'market-positive'}">
+            ${index.change}
+        </div>
+    `).join('')}
+
+    <div style="text-align:right; margin-top:8px;">
+        <a href="https://www.moneycontrol.com/markets/"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color:#0d6efd; font-size:14px; font-weight:600; text-decoration:none;">
+            More →
+        </a>
+    </div>
+` : `
+    <h4><i class="fas fa-chart-line"></i> Markets</h4>
+    <span class="insight-meta">Currently unavailable</span>
+`;
+
+
+  const lead = sportsArticles[0];
+  const sportsInsight = document.getElementById('sportsInsight');
+  if (lead) {
+    sportsInsight.classList.add('sports-insight-card');
+    sportsInsight.style.backgroundImage = `url("${getLocalSportsBackgroundGif()}")`;
+  } else {
+    sportsInsight.classList.remove('sports-insight-card');
+    sportsInsight.style.backgroundImage = '';
+  }
+  document.getElementById('sportsInsight').innerHTML = lead ? `
+    <h4><i class="fas fa-trophy"></i> Sports</h4>
+
+    <a class="insight-meta"
+   href="https://www.espncricinfo.com/"
+   target="_blank"
+   rel="noopener noreferrer"
+   style="text-decoration:none; color:inherit; display:block;">
+
+    <div style="color:#ffffff;font-weight:700;font-size:14px;margin-bottom:6px;">
+        🔴 Live Sports
+    </div>
+
+    <div style="color:#555;font-size:13px;line-height:1.6;">
+        
+        
+    </div>
+
+    <div style="margin-top:10px;color:#0d6efd;font-weight:600;">
+        Read More →
+    </div>
+
+</a>` :
+
+    '<h4><i class="fas fa-trophy"></i> Sports</h4><span class="insight-meta">No sports headline</span>';
+}
+
+async function loadHome() {
+  if (state.query) {
+    return;
+  }
+
+  try {
+    const [heroData, articlePageData, techData, businessData, sportsData, healthData, scienceData, educationData, weatherData, marketData] = await Promise.all([
+      loadJson('/api/articles/'),
+      loadJson(`/api/articles/?page=${state.page}`),
+      loadJson('/api/articles/category/technology/'),
+      loadJson('/api/articles/category/business/'),
+      loadJson('/api/articles/category/sports/'),
+      loadJson('/api/articles/category/health/'),
+      loadJson('/api/articles/category/science/'),
+      loadJson('/api/articles/category/education/'),
+      loadOptionalJson('/api/weather/'),
+      loadOptionalJson('/api/markets/')
+    ]);
+    
+    const heroArticles = (heroData.results || heroData).slice(0, 5);
+    document.getElementById('heroSection').innerHTML = renderHeroCarousel(heroArticles);
+    bindHeroCarousel();
+    startHeroAutoplay();
+    
+    // Show sections based on available data
+    const latestArticles = (articlePageData.results || articlePageData);
+    const techArticles = (techData.results || techData);
+    const businessArticles = (businessData.results || businessData);
+    const sportsArticles = (sportsData.results || sportsData);
+    const healthArticles = (healthData.results || healthData);
+    const scienceArticles = (scienceData.results || scienceData);
+    const educationArticles = (educationData.results || educationData);
+    renderInsights(weatherData, marketData, sportsArticles);
+    
+    restoreHomeLayout();
+    updatePagination(articlePageData);
+    document.getElementById('latestSection').innerHTML = latestArticles.map(renderCard).join('');
+    
+    if (techArticles.length > 0) {
+      document.getElementById('technologyContainer').style.display = 'block';
+      document.getElementById('technologySection').innerHTML = techArticles.map(renderCard).join('');
+    }
+    
+    if (businessArticles.length > 0) {
+      document.getElementById('businessContainer').style.display = 'block';
+      document.getElementById('businessSection').innerHTML = businessArticles.map(renderCard).join('');
+    }
+    
+    if (sportsArticles.length > 0) {
+      document.getElementById('sportsContainer').style.display = 'block';
+      document.getElementById('sportsSection').innerHTML = sportsArticles.map(renderCard).join('');
+    }
+    
+    if (healthArticles.length > 0) {
+      document.getElementById('healthContainer').style.display = 'block';
+      document.getElementById('healthSection').innerHTML = healthArticles.map(renderCard).join('');
+    }
+
+     if (scienceArticles.length > 0) {
+      document.getElementById('scienceContainer').style.display = 'block';
+      document.getElementById('scienceSection').innerHTML = scienceArticles.map(renderCard).join('');
+    }
+
+     if (educationArticles.length > 0) {
+      document.getElementById('educationContainer').style.display = 'block';
+      document.getElementById('educationSection').innerHTML = educationArticles.map(renderCard).join('');
+    }
+    
+    // Load scrollable published articles
+    loadPublishedScrollArticles();
+    loadShorts();
+  } catch (error) {
+    console.error('Error loading articles:', error);
+  }
+}
+
+function loadCategory(category, event) {
+
+    event.preventDefault();
+    state.category = category;
+
+    // Active Menu
+    document.querySelectorAll(".category-link").forEach(link=>{
+        link.classList.remove("active");
+    });
+
+    event.currentTarget.classList.add("active");
+
+    // Home
+    if(category==="home"){
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+        return;
+    }
+
+    if (state.query) {
+        document.getElementById('searchBox').value = '';
+        state.query = '';
+        loadHome().then(() => scrollToCategory(category));
+        return;
+    }
+
+    scrollToCategory(category);
+}
+
+function scrollToCategory(category) {
+    // Scroll to the first matching section for this category.
+    const target =
+        document.getElementById(category + "ScrollContainer") ||
+        document.getElementById(category + "Container");
+
+    if(target){
+        target.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    }
+}
+
+async function searchNews(shouldScroll = false) {
+  state.query = document.getElementById('searchBox').value.trim();
+  if (!state.query.trim()) {
+    loadHome();
+    return;
+  }
+  const data = await loadJson(`/api/search/?q=${encodeURIComponent(state.query)}`);
+  showSearchResults(data.results || data);
+
+  if (shouldScroll) {
+    window.requestAnimationFrame(() => {
+      document.getElementById('latestSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+}
+
+function queueSearch() {
+  window.clearTimeout(state.searchTimer);
+  state.searchTimer = window.setTimeout(() => {
+    searchNews(false);
+  }, 200);
+}
+
+async function publishArticle(articleId, btn) {
+  try {
+    const response = await fetch(`/api/articles/${articleId}/publish/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      }
+    });
+    if (response.ok) {
+      btn.style.background = '#4CAF50';
+      btn.innerHTML = '<i class="fas fa-check"></i> âœ“';
+      setTimeout(() => loadHome(), 500);
+    }
+  } catch (error) {
+    console.log('Admin action - Publish clicked for article:', articleId);
+  }
+}
+
+async function markTrending(articleId, btn) {
+  try {
+    const response = await fetch(`/api/articles/${articleId}/trending/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      }
+    });
+    if (response.ok) {
+      btn.style.background = '#FF9800';
+      btn.innerHTML = '<i class="fas fa-fire"></i> ðŸ”¥';
+      setTimeout(() => loadHome(), 500);
+    }
+  } catch (error) {
+    console.log('Admin action - Mark Trending for article:', articleId);
+  }
+}
+
+async function deleteArticle(articleId, btn) {
+  if (confirm('Are you sure you want to delete this article?')) {
+    try {
+      const response = await fetch(`/api/articles/${articleId}/`, {
+        method: 'DELETE',
+        headers: {'X-CSRFToken': getCookie('csrftoken')}
+      });
+      if (response.ok) {
+        btn.parentElement.parentElement.parentElement.remove();
+      }
+    } catch (error) {
+      console.log('Admin action - Delete for article:', articleId);
+    }
+  }
+}
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+function scrollSection(sectionId, direction = 'left') {
+  const element = document.getElementById(sectionId);
+  if (!element) return;
+  
+  const scrollAmount = 350;
+  if (direction === 'right') {
+    element.scrollLeft += scrollAmount;
+  } else {
+    element.scrollLeft -= scrollAmount;
+  }
+}
+
+function renderScrollCard(article) {
+  const categoryColor = getCategoryColor(article.category);
+  const trendingBadge = article.is_trending ? ' ðŸ”¥ TRENDING' : '';
+  
+  return `
+    <div class="scroll-article-card">
+      ${article.image_url ? `<img src="${article.image_url}" alt="${article.title}" onerror="this.src='https://via.placeholder.com/300x180?text=No+Image'">` : '<div style="width: 100%; height: 180px; background: #ddd; display: flex; align-items: center; justify-content: center;"><span class="text-muted">No Image</span></div>'}
+      <div class="scroll-article-card-body">
+        <div class="scroll-article-card-badge" style="background-color: ${categoryColor}20; color: ${categoryColor};">
+          ${article.category.toUpperCase()}
+        </div>
+        <div class="scroll-article-card-title">${article.title}</div>
+        <div class="scroll-article-card-meta">
+          <span>${new Date(article.published_at).toLocaleDateString()}</span>
+        </div>
+        <a href="${article.source_url}" target="_blank" class="btn btn-sm btn-primary w-100 mt-2">
+          <i class="fas fa-external-link-alt"></i> Read
+        </a>
+      </div>
+    </div>`;
+}
+
+async function loadPublishedScrollArticles() {
+  if (state.query) {
+    return;
+  }
+
+  try {
+    const categories = ['technology', 'business', 'sports', 'health', 'science', 'education'];
+    
+    for (const category of categories) {
+      try {
+        const response = await fetch(`/api/articles/category/${category}/`);
+        const data = await response.json();
+        let articles = data.results || data;
+        
+        // Filter only published articles
+        articles = articles.filter(a => a.is_published === true || a.is_published === 'true').slice(0, 10);
+        
+        if (articles.length > 0) {
+          const container = document.getElementById(`${category}ScrollContainer`);
+          const scrollDiv = document.getElementById(`${category}-scroll`);
+          
+          if (container && scrollDiv) {
+            container.style.display = 'block';
+            scrollDiv.innerHTML = articles.map(renderScrollCard).join('');
+          }
+        }
+      } catch (error) {
+        console.error(`Error loading ${category} articles:`, error);
+      }
+    }
+  } catch (error) {
+    console.error('Error loading published scroll articles:', error);
+  }
+}
+
+// Event Listeners
+document.getElementById('searchBox').setAttribute('placeholder', 'Search news...');
+
+document.getElementById('newsletterForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const emailInput = document.getElementById('newsletterEmail');
+  const message = document.getElementById('newsletterMessage');
+
+  if (!emailInput.value.trim()) {
+    message.textContent = 'Enter an email address to subscribe.';
+    return;
+  }
+
+  message.textContent = `Thanks for subscribing, ${emailInput.value.trim()}!`;
+  emailInput.value = '';
+});
+
+document.querySelectorAll(".category-link").forEach(link=>{
+
+    link.addEventListener("click",function(e){
+
+        loadCategory(this.dataset.category,e);
+
+    });
+
+});
+
+document.getElementById('searchButton').addEventListener('click', () => searchNews(true));
+document.getElementById('searchBox').addEventListener('input', queueSearch);
+document.getElementById('searchBox').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') searchNews(true);
+});
+
+document.getElementById('previousPageButton').addEventListener('click', async () => {
+  if (state.page <= 1) return;
+  state.page -= 1;
+  await loadHome();
+  document.getElementById('latestSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('nextPageButton').addEventListener('click', async () => {
+  if (!state.nextPageUrl) return;
+  state.page += 1;
+  await loadHome();
+  document.getElementById('latestSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('lastPageButton').addEventListener('click', async () => {
+  if (state.page >= state.totalPages) return;
+  state.page = state.totalPages;
+  await loadHome();
+  document.getElementById('latestSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Admin Mode Toggle
+document.getElementById('toggleAdminMode').addEventListener('click', function() {
+  state.adminMode = !state.adminMode;
+  document.getElementById('adminPanel').style.display = state.adminMode ? 'block' : 'none';
+  this.innerHTML = state.adminMode ? 
+    '<i class="fas fa-lock"></i> Admin Mode ON' : 
+    '<i class="fas fa-lock-open"></i> Admin Mode';
+  this.classList.toggle('btn-info');
+  this.classList.toggle('btn-outline-info');
+});
+
+// Admin Filter
+document.getElementById('applyAdminFilter').addEventListener('click', async function() {
+  const category = document.getElementById('adminFilterCategory').value;
+  const status = document.getElementById('adminFilterStatus').value;
+  
+  try {
+    let url = '/api/filter/';
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (status) params.append('status', status);
+    if (params.toString()) url += '?' + params.toString();
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    const articles = data.results || [];
+    state.filteredArticles = articles;
+    
+    if (articles.length > 0) {
+      document.getElementById('latestSection').innerHTML = articles.map(renderCard).join('');
+      document.getElementById('sectionTitle').innerHTML = `<i class="fas fa-filter"></i> Filtered Results (${articles.length})`;
+    } else {
+      document.getElementById('latestSection').innerHTML = '<div class="alert alert-info">No articles found matching the filter criteria.</div>';
+    }
+  } catch (error) {
+    console.error('Error applying filter:', error);
+    alert('Error applying filter. Please try again.');
+  }
+});
+
+// Publish All Filtered
+document.getElementById('publishAllFiltered').addEventListener('click', async function() {
+  if (state.filteredArticles.length === 0) {
+    alert('No articles to publish. Apply a filter first.');
+    return;
+  }
+  
+  if (!confirm(`Are you sure you want to publish ${state.filteredArticles.length} articles?`)) {
+    return;
+  }
+  
+  try {
+    const category = document.getElementById('adminFilterCategory').value;
+    const status = document.getElementById('adminFilterStatus').value;
+    
+    let url = '/api/publish-filtered/';
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (status) params.append('status', status);
+    if (params.toString()) url += '?' + params.toString();
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+      }
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert(`âœ“ ${result.message}`);
+      // Reload filtered articles to show updated status
+      document.getElementById('applyAdminFilter').click();
+    } else {
+      alert('Error: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error publishing articles:', error);
+    alert('Error publishing articles. Please try again.');
+  }
+});
+
+loadHome();
+loadShorts();
+loadPublishedScrollArticles();
+setInterval(() => {
+  if (state.query) {
+    searchNews();
+    return;
+  }
+  loadHome();
+  loadShorts();
+  loadPublishedScrollArticles();
+}, 15000);
+</script>
+</body>
+</html>
+
+
+
+

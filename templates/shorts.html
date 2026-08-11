@@ -1,0 +1,424 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Shorts | NEWS CLAUDE</title>
+<link rel="icon" type="image/png" href="{% static 'images/new news claude logo.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/new news claude logo.png' %}">
+  
+<style>
+:root {
+    --surface: rgba(32, 56, 109, 0.9);
+    --surface-soft: rgba(64, 68, 75, 0.6);
+    --border: rgba(146, 165, 177, 0.12);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+a {
+    color: inherit;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 9px 16px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.6));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background-color: #fff;
+}
+
+.header-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.header-logo {
+    width: 108px;
+    height: 34px;
+    object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-pill {
+    border: 1px solid var(--border);
+    background: var(--surface-soft);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.42rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.shorts-container {
+    width: min(100%, 460px);
+    margin: 0 auto;
+    padding-top: 64px;
+}
+
+.short-card {
+    position: relative;
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.video-area {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    background: #050505;
+}
+
+.video-player,
+.video-player iframe {
+    width: 100%;
+    min-height: 100svh;
+    border: 0;
+}
+
+.video-player iframe {
+    pointer-events: none;
+}
+
+.info {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 20px;
+    display: grid;
+    gap: 0.45rem;
+    max-width: calc(100% - 32px);
+    padding: 1rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.22), rgba(15, 23, 42, 0.8));
+    backdrop-filter: blur(10px);
+}
+
+.info h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.info p,
+.info small {
+    margin: 0;
+    color: #dbe4f0;
+}
+
+.nav-arrows {
+    position: fixed;
+    right: max(12px, env(safe-area-inset-right));
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.nav-arrows button {
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.nav-arrows button:hover {
+    background: #ff0000;
+}
+
+.shorts-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
+}
+
+.shorts-footer a {
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: #fff;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 767.98px) {
+    .header-inner {
+        align-items: stretch;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-pill {
+        flex: 1 1 0;
+        text-align: center;
+    }
+
+    .nav-arrows {
+        right: 10px;
+        top: auto;
+        bottom: calc(84px + env(safe-area-inset-bottom));
+        transform: none;
+    }
+
+    .nav-arrows button {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    header {
+        padding: 10px 12px;
+    }
+
+    .header-logo {
+        width: 104px;
+        height: 38px;
+        border-radius: 12px;
+    }
+
+    .shorts-container {
+        width: 100%;
+        padding-top: 84px;
+    }
+
+    .info {
+        left: 12px;
+        right: 12px;
+        bottom: 14px;
+        padding: 0.85rem;
+    }
+
+    .info h3 {
+        font-size: 0.95rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <a class="header-brand" href="/">
+            <span>&larr;</span>
+            <img src="{% static 'images/main newsclaude logo.png' %}" alt="NEWS CLAUDE Logo" class="header-logo">
+        </a>
+        <div class="header-actions">
+            <a class="header-pill" href="/">News</a>
+            <a class="header-pill" href="/admin/">Admin</a>
+        </div>
+    </div>
+</header>
+
+<main class="shorts-container">
+{% for short in shorts %}
+<section id="short-{{ short.video_id }}" class="short-card">
+    <div class="video-area">
+        <div class="video-player">
+            <iframe
+                data-src="https://www.youtube-nocookie.com/embed/{{ short.video_id }}?playsinline=1&rel=0&controls=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1"
+                title="{{ short.title }}"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="info">
+            <h3>{{ short.title }}</h3>
+            <p>@{{ short.channel.channel_id }}</p>
+            <small>{{ short.published_at }}</small>
+        </div>
+    </div>
+</section>
+{% empty %}
+<section class="short-card">
+    <div class="video-area" style="display:flex;align-items:center;justify-content:center;padding:2rem;">
+        <div class="info" style="position:static;max-width:420px;">
+            <h3>No shorts available yet</h3>
+            <p>Import a YouTube channel in the admin to start filling this feed.</p>
+        </div>
+    </div>
+</section>
+{% endfor %}
+</main>
+
+<div class="nav-arrows">
+    <button id="upBtn" aria-label="Previous short">&#9650;</button>
+    <button id="downBtn" aria-label="Next short">&#9660;</button>
+</div>
+
+<div class="shorts-footer">
+    <a href="/">Back to NEWS CLAUDE homepage</a>
+</div>
+
+<script>
+const cards = document.querySelectorAll(".short-card");
+let current = 0;
+
+function sendPlayerCommand(index, func, args = []) {
+    const card = cards[index];
+    const player = card && card.querySelector("iframe[src]");
+
+    if (!player) {
+        return;
+    }
+
+    player.contentWindow.postMessage(JSON.stringify({
+        event: "command",
+        func,
+        args
+    }), "https://www.youtube-nocookie.com");
+}
+
+function loadPlayer(index) {
+    const card = cards[index];
+    const player = card && card.querySelector("iframe[data-src]");
+
+    if (player) {
+        player.addEventListener("load", () => {
+            if (index === current) playPlayer(index);
+        }, { once: true });
+        player.src = player.dataset.src;
+        delete player.dataset.src;
+    }
+}
+
+function loadNearbyPlayers(index) {
+    [index - 1, index, index + 1].forEach(loadPlayer);
+}
+
+function pauseOtherPlayers(activeIndex) {
+    cards.forEach((card, index) => {
+        if (index === activeIndex) return;
+        sendPlayerCommand(index, "pauseVideo");
+    });
+}
+
+function playPlayer(index) {
+    sendPlayerCommand(index, "unMute");
+    sendPlayerCommand(index, "playVideo");
+}
+
+function updateCurrent() {
+    const middle = window.innerHeight / 2;
+
+    cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+
+        if (rect.top <= middle && rect.bottom >= middle) {
+            if (current !== index) {
+                current = index;
+                pauseOtherPlayers(current);
+            }
+            loadNearbyPlayers(current);
+            playPlayer(current);
+        }
+    });
+}
+
+window.addEventListener("scroll", updateCurrent, { passive: true });
+
+document.getElementById("downBtn").onclick = function () {
+    if (current < cards.length - 1) {
+        cards[current + 1].scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+};
+
+document.getElementById("upBtn").onclick = function () {
+    if (current > 0) {
+        cards[current - 1].scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+};
+
+updateCurrent();
+loadNearbyPlayers(current);
+
+const id = new URLSearchParams(location.search).get("short");
+
+if (id) {
+    const target = document.getElementById(`short-${id}`);
+
+    if (target) {
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+</script>
+
+</body>
+</html>
